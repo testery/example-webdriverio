@@ -4,7 +4,7 @@
   "description": "sample test framework with WebDriverIO and CucumberJS",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "./node_modules/.bin/wdio"
   },
   "repository": {
     "type": "git",
