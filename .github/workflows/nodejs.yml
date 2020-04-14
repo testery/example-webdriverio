@@ -14,7 +14,7 @@ jobs:
       matrix:
         python-version: [3.5, 3.6, 3.7, 3.8]
     env:
-      TESTERY_TOKEN: ${{ secrets.TesteryToken }}
+      TESTERY_TOKEN: ${{ secrets.TesteryTokenDev }}
     
     steps:
     - uses: actions/checkout@v2
