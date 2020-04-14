@@ -46,20 +46,7 @@ exports.config = {
   // Sauce Labs platform configurator - a great tool to configure your capabilities:
   // https://docs.saucelabs.com/reference/platforms-configurator
   //
-  capabilities: [
-    {
-      // maxInstances can get overwritten per capability. So if you have an in-house Selenium
-      // grid with only 5 firefox instances available you can make sure that not more than
-      // 5 instances get started at a time.
-      maxInstances: 5,
-      //
-      browserName: "chrome",
-      "goog:chromeOptions": {
-        // run in headless mode
-        args: ["--headless", "--no-sandbox"]
-      }
-    }
-  ],
+  capabilities: [],
   //
   // ===================
   // Test Configurations
@@ -123,18 +110,7 @@ exports.config = {
   // Test reporter for stdout.
   // The only one supported by default is 'dot'
   // see also: https://webdriver.io/docs/dot-reporter.html
-  reporters: [
-    "spec",
-    [
-      "junit",
-      {
-        outputDir: "./",
-        outputFileFormat: function() {
-          return "results.xml";
-        }
-      }
-    ]
-  ],
+  reporters: ["spec"],
   //
   // If you are using Cucumber you need to specify the location of your step definitions.
   cucumberOpts: {
@@ -151,7 +127,7 @@ exports.config = {
     strict: false, // <boolean> fail if there are any undefined or pending steps
     tagExpression: "", // <string> (expression) only execute the features or scenarios with tags matching the expression
     timeout: 60000, // <number> timeout for step definitions
-    ignoreUndefinedDefinitions: false // <boolean> Enable this config to treat undefined definitions as warnings.
+    ignoreUndefinedDefinitions: false, // <boolean> Enable this config to treat undefined definitions as warnings.
   },
 
   //
@@ -176,9 +152,9 @@ exports.config = {
    * @param {Array.<Object>} capabilities list of capabilities details
    * @param {Array.<String>} specs List of spec file paths that are to be run
    */
-  beforeSession: function(config, capabilities, specs) {
+  beforeSession: function (config, capabilities, specs) {
     require("@babel/register");
-  }
+  },
   /**
    * Gets executed before test execution begins. At this point you can access to all global
    * variables like `browser`. It is the perfect place to define custom commands.
