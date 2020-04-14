@@ -19,6 +19,7 @@
   "dependencies": {
     "@wdio/cli": "^5.18.7",
     "@wdio/selenium-standalone-service": "^5.16.10",
+    "minimist": "^1.2.5",
     "webdriverio": "^5.18.7"
   },
   "devDependencies": {
