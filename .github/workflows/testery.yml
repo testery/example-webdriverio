@@ -21,4 +21,4 @@ jobs:
           pip install testery --upgrade
       - name: Run Testery Tests
         run: |
-          testery create-test-run --api-url https://api.dev.testery.io/api --token "$TESTERY_TOKEN" --include-tags "pass" --git-ref "$GITHUB_SHA" --project "example-webdriverio" --wait-for-results
+          testery create-test-run --api-url https://api.dev.testery.io/api --token "$TESTERY_TOKEN" --include-tags "pass" --git-ref "$GITHUB_SHA" --project "example-webdriverio"
