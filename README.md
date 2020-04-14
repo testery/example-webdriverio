@@ -1,4 +1,4 @@
-# webdriverio-example
+# example-webdriverio
 
 Example project for showing WebDriver.io tests running on Testery.
 
