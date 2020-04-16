@@ -8,8 +8,6 @@ exports.config = {
   // on a remote machine).
   runner: "local",
   //
-  // Override default path ('/wd/hub') for chromedriver service.
-  path: "/wd/hub",
   //
   // ==================
   // Specify Test Files
