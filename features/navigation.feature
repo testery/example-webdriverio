@@ -3,7 +3,7 @@ Feature: Navigation
 @pass
 Scenario: User Searches Yahoo
   When I navigate to "http://www.yahoo.com"
-  Then the page title is 'Yahoo'
+  Then the page title is 'Yahoo oops'
 
 @pass
 Scenario: User Searches Google
