@@ -23,7 +23,7 @@ Scenario: User Goes to Amazon
 @pass
 Scenario: User Goes to Github
   When I navigate to 'http://www.github.com'
-  Then the page title is "The world’s leading software development platform · GitHub - bogus"
+  Then the page title is "The world’s leading software development platform · GitHub - b2"
 	Then take a screenshot
 
 @table
