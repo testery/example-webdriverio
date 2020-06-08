@@ -16,8 +16,9 @@ Scenario: This test will fail
 
 @ignore
 Scenario: User Goes to Amazon
-  When I navigate to 'http://www.amazon.com'
+  When I navigate to 'https://il-qa.lnpweb.com'
   Then the page title is "This test should not run since it is ignored - bogus"
+  Then take a screenshot
 
 @github
 @pass
