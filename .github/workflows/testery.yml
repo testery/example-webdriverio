@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      TESTERY_TOKEN: ${{ secrets.TesteryTokenDev }}
+      TESTERY_TOKEN: ${{ secrets.TesteryTokenProd }}
 
     steps:
       - uses: actions/checkout@v2
@@ -21,4 +21,4 @@ jobs:
           pip install testery --upgrade
       - name: Run Testery Tests
         run: |
-          testery create-test-run --api-url https://api.dev.testery.io/api --token "$TESTERY_TOKEN" --include-tags "pass" --git-ref "$GITHUB_SHA" --project "example-webdriverio"
+          testery create-test-run --api-url https://api.testery.io/api --token "$TESTERY_TOKEN" --include-tags "pass" --git-ref "$GITHUB_SHA" --project "example-webdriverio"
