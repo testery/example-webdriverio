@@ -17,7 +17,7 @@ Scenario: This test will fail
 @ignore
 Scenario: User Goes to Amazon
   When I navigate to 'http://www.amazon.com'
-  Then the page title is "This test should not run since it is ignored"
+  Then the page title is "This test should not run since it is ignored - bogus"
 
 @github
 @pass
