@@ -100,7 +100,7 @@ Feature: Navigation
       | https://www.twitch.tv             |
       | https://www.wikia.com             |
       | https://www.google.co.th          |
-      | https://www.go.com                |
+      | https://www.google.com            |
       | https://www.google.com.ph         |
       | https://www.doubleclick.net       |
       | https://www.onet.pl               |
@@ -200,7 +200,7 @@ Feature: Navigation
       | https://www.twitch.tv             |
       | https://www.wikia.com             |
       | https://www.google.co.th          |
-      | https://www.go.com                |
+      | https://www.google.com            |
       | https://www.google.com.ph         |
       | https://www.doubleclick.net       |
       | https://www.onet.pl               |
@@ -300,7 +300,7 @@ Feature: Navigation
       | https://www.twitch.tv             |
       | https://www.wikia.com             |
       | https://www.google.co.th          |
-      | https://www.go.com                |
+      | https://www.google.com            |
       | https://www.google.com.ph         |
       | https://www.doubleclick.net       |
       | https://www.onet.pl               |
