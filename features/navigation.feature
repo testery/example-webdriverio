@@ -58,7 +58,7 @@ Feature: Navigation
       | https://www.ok.ru                 |
       | https://www.apple.com             |
       | https://www.github.com            |
-      | https://www.chinadaily.com.cn     |
+      | https://www.google.com            |
       | https://www.imdb.com              |
       | https://www.google.co.kr          |
       | https://www.fc2.com               |
@@ -158,7 +158,7 @@ Feature: Navigation
       | https://www.ok.ru                 |
       | https://www.apple.com             |
       | https://www.github.com            |
-      | https://www.chinadaily.com.cn     |
+      | https://www.google.com            |
       | https://www.imdb.com              |
       | https://www.google.co.kr          |
       | https://www.fc2.com               |
@@ -258,7 +258,7 @@ Feature: Navigation
       | https://www.ok.ru                 |
       | https://www.apple.com             |
       | https://www.github.com            |
-      | https://www.chinadaily.com.cn     |
+      | https://www.google.com            |
       | https://www.imdb.com              |
       | https://www.google.co.kr          |
       | https://www.fc2.com               |
