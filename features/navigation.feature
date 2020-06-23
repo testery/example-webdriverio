@@ -1,39 +1,310 @@
 Feature: Navigation
 
-@pass
-Scenario: User Searches Yahoo
-  When I navigate to "http://www.yahoo.com"
-  Then the page title is 'Yahoo'
+  @table
+  @pass
+  Scenario Outline: Navigation Tests
+    When I navigate to '<url>'
+    Then take a screenshot
 
-@pass
-Scenario: User Searches Google
-  When I navigate to "http://www.google.com"
-  Then the page title is 'Google'
-
-Scenario: This test will fail
-  When I navigate to "http://www.google.com"
-  Then the page title is 'Not Google'
-
-@ignore
-Scenario: User Goes to Amazon
-  When I navigate to 'http://www.amazon.com'
-  Then the page title is "This test should not run since it is ignored"
-
-@github
-@pass
-Scenario: User Goes to Github
-  When I navigate to 'http://www.github.com'
-  Then the page title is "The world’s leading software development platform · GitHub"
-	Then take a screenshot
-
-@table
-@pass
-Scenario Outline: Navigation Tests
-	When I navigate to '<url>'
-	Then the page title is '<title>'
-
-	Examples:
-	| name   | url                   | title |
-	| Google | http://www.google.com | Google|
-	| Yahoo  | http://www.yahoo.com  | Yahoo |
-  | Bitbucket  | https://bitbucket.org  | Bitbucket |
+    Examples:
+      | url                               |
+      | https://www.google.com            |
+      | https://www.yahoo.com             |
+      | https://bitbucket.org             |
+      | https://www.youtube.com           |
+      | https://www.facebook.com          |
+      | https://www.yahoo.com             |
+      | https://www.amazon.com            |
+      | https://www.wikipedia.org         |
+      | https://www.qq.com                |
+      | https://www.google.co.in          |
+      | https://www.twitter.com           |
+      | https://www.live.com              |
+      | https://www.taobao.com            |
+      | https://www.bing.com              |
+      | https://www.instagram.com         |
+      | https://www.weibo.com             |
+      | https://www.google.com            |
+      | https://www.linkedin.com          |
+      | https://www.yahoo.co.jp           |
+      | https://www.msn.com               |
+      | https://www.vk.com                |
+      | https://www.google.de             |
+      | https://www.yandex.ru             |
+      | https://www.google.com            |
+      | https://www.google.co.uk          |
+      | https://www.reddit.com            |
+      | https://www.ebay.com              |
+      | https://www.google.fr             |
+      | https://www.google.com.br         |
+      | https://www.360.cn                |
+      | https://www.sohu.com              |
+      | https://www.amazon.co.jp          |
+      | https://www.pinterest.com         |
+      | https://www.netflix.com           |
+      | https://www.google.it             |
+      | https://www.google.ru             |
+      | https://www.microsoft.com         |
+      | https://www.google.es             |
+      | https://www.wordpress.com         |
+      | https://www.gmw.cn                |
+      | https://www.tumblr.com            |
+      | https://www.paypal.com            |
+      | https://www.blogspot.com          |
+      | https://www.google.com            |
+      | https://www.stackoverflow.com     |
+      | https://www.aliexpress.com        |
+      | https://www.naver.com             |
+      | https://www.ok.ru                 |
+      | https://www.apple.com             |
+      | https://www.github.com            |
+      | https://www.google.com            |
+      | https://www.imdb.com              |
+      | https://www.google.co.kr          |
+      | https://www.fc2.com               |
+      | https://www.jd.com                |
+      | https://www.blogger.com           |
+      | https://www.google.com            |
+      | https://www.google.ca             |
+      | https://www.whatsapp.com          |
+      | https://www.amazon.in             |
+      | https://www.office.com            |
+      | https://www.google.com            |
+      | https://www.google.co.id          |
+      | https://www.youku.com             |
+      | https://www.google.com            |
+      | https://www.craigslist.org        |
+      | https://www.google.com            |
+      | https://www.nicovideo.jp          |
+      | https://www.google.pl             |
+      | https://www.soso.com              |
+      | https://www.bilibili.com          |
+      | https://www.dropbox.com           |
+      | https://www.xinhuanet.com         |
+      | https://www.outbrain.com          |
+      | https://www.pixnet.net            |
+      | https://www.alibaba.com           |
+      | https://www.alipay.com            |
+      | https://www.google.com            |
+      | https://www.booking.com           |
+      | https://www.googleusercontent.com |
+      | https://www.google.com.au         |
+      | https://www.popads.net            |
+      | https://www.cntv.cn               |
+      | https://www.zhihu.com             |
+      | https://www.google.com            |
+      | https://www.diply.com             |
+      | https://www.coccoc.com            |
+      | https://www.cnn.com               |
+      | https://www.bbc.co.uk             |
+      | https://www.twitch.tv             |
+      | https://www.wikia.com             |
+      | https://www.google.co.th          |
+      | https://www.google.com            |
+      | https://www.google.com.ph         |
+      | https://www.doubleclick.net       |
+      | https://www.onet.pl               |
+      | https://www.googleadservices.com  |
+      | https://www.google.com            |
+      | https://www.googleweblight.com    |
+      | https://www.answers.yahoo.com     |
+      | https://www.google.com            |
+      | https://www.yahoo.com             |
+      | https://bitbucket.org             |
+      | https://www.youtube.com           |
+      | https://www.facebook.com          |
+      | https://www.yahoo.com             |
+      | https://www.amazon.com            |
+      | https://www.wikipedia.org         |
+      | https://www.qq.com                |
+      | https://www.google.co.in          |
+      | https://www.twitter.com           |
+      | https://www.live.com              |
+      | https://www.taobao.com            |
+      | https://www.bing.com              |
+      | https://www.instagram.com         |
+      | https://www.weibo.com             |
+      | https://www.google.com            |
+      | https://www.linkedin.com          |
+      | https://www.yahoo.co.jp           |
+      | https://www.msn.com               |
+      | https://www.vk.com                |
+      | https://www.google.de             |
+      | https://www.yandex.ru             |
+      | https://www.google.com            |
+      | https://www.google.co.uk          |
+      | https://www.reddit.com            |
+      | https://www.ebay.com              |
+      | https://www.google.fr             |
+      | https://www.google.com.br         |
+      | https://www.360.cn                |
+      | https://www.sohu.com              |
+      | https://www.amazon.co.jp          |
+      | https://www.pinterest.com         |
+      | https://www.netflix.com           |
+      | https://www.google.it             |
+      | https://www.google.ru             |
+      | https://www.microsoft.com         |
+      | https://www.google.es             |
+      | https://www.wordpress.com         |
+      | https://www.gmw.cn                |
+      | https://www.tumblr.com            |
+      | https://www.paypal.com            |
+      | https://www.blogspot.com          |
+      | https://www.google.com            |
+      | https://www.stackoverflow.com     |
+      | https://www.aliexpress.com        |
+      | https://www.naver.com             |
+      | https://www.ok.ru                 |
+      | https://www.apple.com             |
+      | https://www.github.com            |
+      | https://www.google.com            |
+      | https://www.imdb.com              |
+      | https://www.google.co.kr          |
+      | https://www.fc2.com               |
+      | https://www.jd.com                |
+      | https://www.blogger.com           |
+      | https://www.google.com            |
+      | https://www.google.ca             |
+      | https://www.whatsapp.com          |
+      | https://www.amazon.in             |
+      | https://www.office.com            |
+      | https://www.google.com            |
+      | https://www.google.co.id          |
+      | https://www.youku.com             |
+      | https://www.google.com            |
+      | https://www.craigslist.org        |
+      | https://www.google.com            |
+      | https://www.nicovideo.jp          |
+      | https://www.google.pl             |
+      | https://www.soso.com              |
+      | https://www.bilibili.com          |
+      | https://www.dropbox.com           |
+      | https://www.xinhuanet.com         |
+      | https://www.outbrain.com          |
+      | https://www.pixnet.net            |
+      | https://www.alibaba.com           |
+      | https://www.alipay.com            |
+      | https://www.google.com            |
+      | https://www.booking.com           |
+      | https://www.googleusercontent.com |
+      | https://www.google.com.au         |
+      | https://www.popads.net            |
+      | https://www.cntv.cn               |
+      | https://www.zhihu.com             |
+      | https://www.google.com            |
+      | https://www.diply.com             |
+      | https://www.coccoc.com            |
+      | https://www.cnn.com               |
+      | https://www.bbc.co.uk             |
+      | https://www.twitch.tv             |
+      | https://www.wikia.com             |
+      | https://www.google.co.th          |
+      | https://www.google.com            |
+      | https://www.google.com.ph         |
+      | https://www.doubleclick.net       |
+      | https://www.onet.pl               |
+      | https://www.googleadservices.com  |
+      | https://www.google.com            |
+      | https://www.googleweblight.com    |
+      | https://www.answers.yahoo.com     |
+      | https://www.google.com            |
+      | https://www.yahoo.com             |
+      | https://bitbucket.org             |
+      | https://www.youtube.com           |
+      | https://www.facebook.com          |
+      | https://www.yahoo.com             |
+      | https://www.amazon.com            |
+      | https://www.wikipedia.org         |
+      | https://www.qq.com                |
+      | https://www.google.co.in          |
+      | https://www.twitter.com           |
+      | https://www.live.com              |
+      | https://www.taobao.com            |
+      | https://www.bing.com              |
+      | https://www.instagram.com         |
+      | https://www.weibo.com             |
+      | https://www.google.com            |
+      | https://www.linkedin.com          |
+      | https://www.yahoo.co.jp           |
+      | https://www.msn.com               |
+      | https://www.vk.com                |
+      | https://www.google.de             |
+      | https://www.yandex.ru             |
+      | https://www.google.com            |
+      | https://www.google.co.uk          |
+      | https://www.reddit.com            |
+      | https://www.ebay.com              |
+      | https://www.google.fr             |
+      | https://www.google.com.br         |
+      | https://www.360.cn                |
+      | https://www.sohu.com              |
+      | https://www.amazon.co.jp          |
+      | https://www.pinterest.com         |
+      | https://www.netflix.com           |
+      | https://www.google.it             |
+      | https://www.google.ru             |
+      | https://www.microsoft.com         |
+      | https://www.google.es             |
+      | https://www.wordpress.com         |
+      | https://www.gmw.cn                |
+      | https://www.tumblr.com            |
+      | https://www.paypal.com            |
+      | https://www.blogspot.com          |
+      | https://www.google.com            |
+      | https://www.stackoverflow.com     |
+      | https://www.aliexpress.com        |
+      | https://www.naver.com             |
+      | https://www.ok.ru                 |
+      | https://www.apple.com             |
+      | https://www.github.com            |
+      | https://www.google.com            |
+      | https://www.imdb.com              |
+      | https://www.google.co.kr          |
+      | https://www.fc2.com               |
+      | https://www.jd.com                |
+      | https://www.blogger.com           |
+      | https://www.google.com            |
+      | https://www.google.ca             |
+      | https://www.whatsapp.com          |
+      | https://www.amazon.in             |
+      | https://www.office.com            |
+      | https://www.google.com            |
+      | https://www.google.co.id          |
+      | https://www.youku.com             |
+      | https://www.google.com            |
+      | https://www.craigslist.org        |
+      | https://www.google.com            |
+      | https://www.nicovideo.jp          |
+      | https://www.google.pl             |
+      | https://www.soso.com              |
+      | https://www.bilibili.com          |
+      | https://www.dropbox.com           |
+      | https://www.xinhuanet.com         |
+      | https://www.outbrain.com          |
+      | https://www.pixnet.net            |
+      | https://www.alibaba.com           |
+      | https://www.alipay.com            |
+      | https://www.google.com            |
+      | https://www.booking.com           |
+      | https://www.googleusercontent.com |
+      | https://www.google.com.au         |
+      | https://www.popads.net            |
+      | https://www.cntv.cn               |
+      | https://www.zhihu.com             |
+      | https://www.google.com            |
+      | https://www.diply.com             |
+      | https://www.coccoc.com            |
+      | https://www.cnn.com               |
+      | https://www.bbc.co.uk             |
+      | https://www.twitch.tv             |
+      | https://www.wikia.com             |
+      | https://www.google.co.th          |
+      | https://www.google.com            |
+      | https://www.google.com.ph         |
+      | https://www.doubleclick.net       |
+      | https://www.onet.pl               |
+      | https://www.googleadservices.com  |
+      | https://www.google.com            |
+      | https://www.googleweblight.com    |
+      | https://www.answers.yahoo.com     |
