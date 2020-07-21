@@ -17,12 +17,6 @@ When("I run an accessibility test", function() {
       });
   }, options);
 
-  console.warn("Violations:");
-
-  results.violations.forEach(violation => {
-    console.warn(violation.id);
-  });
-
   //expect(results.violations.length).to.be.equal(0,`${browser.getUrl()} doesn't pass accessibility test`);
 
 });
@@ -51,5 +45,5 @@ Then("the following rules are enforced", function (dataTable){
   }, this);
 
   expect(rulesViolated).to.be.false;
-  
+
 });
