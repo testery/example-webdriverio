@@ -14,7 +14,7 @@ Feature: Accessibility
       | https://www.amazon.com            |
 
   @pass
-  Scenario: Carfax Site Accessibility
+  Scenario: Checking Specific Accessibility Rules
   When I navigate to 'https://www.carfax.com'
   And I run an accessibility test
   Then the following rules are enforced
