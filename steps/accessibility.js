@@ -29,6 +29,7 @@ Then("there should be no accessibility violations", function() {
 Then("the following rules are enforced", function (dataTable){
   var rules = dataTable.raw();
   var rulesViolated = false;
+  var failureMessage = "";
   
   rules.forEach( (rule) => {
     var id = rule[0]
@@ -37,6 +38,7 @@ Then("the following rules are enforced", function (dataTable){
       if (violation.id == id)
       {
           console.warn("[WARN] Rule violated - " + violation.id + "\n" + violation.description + "\n" + violation.helpUrl + "\n\n");
+          failureMessage += "[WARN] Rule violated - " + violation.id + "\n" + violation.description + "\n" + violation.helpUrl + "\n\n";
           rulesViolated = true;
       }
 
@@ -44,6 +46,6 @@ Then("the following rules are enforced", function (dataTable){
 
   }, this);
 
-  expect(rulesViolated).to.be.false;
+  expect(rulesViolated).to.be.false(failureMessage);
 
 });
