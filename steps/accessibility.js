@@ -30,7 +30,7 @@ Then("the following rules are enforced", function (dataTable){
   var rules = dataTable.raw();
   var rulesViolated = false;
   var failureMessage = "";
-  
+
   rules.forEach( (rule) => {
     var id = rule[0]
 
@@ -46,6 +46,6 @@ Then("the following rules are enforced", function (dataTable){
 
   }, this);
 
-  expect(rulesViolated).to.be.false(failureMessage);
+  expect(rulesViolated, failureMessage).to.be.false;
 
 });
