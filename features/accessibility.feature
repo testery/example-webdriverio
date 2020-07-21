@@ -13,7 +13,7 @@ Feature: Accessibility
       | https://www.carfax.com            |
       | https://www.amazon.com            |
 
-  @me
+  @pass
   Scenario: Carfax Site Accessibility
   When I navigate to 'https://www.carfax.com'
   And I run an accessibility test
