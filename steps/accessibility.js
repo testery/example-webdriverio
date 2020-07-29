@@ -1,6 +1,7 @@
 import { When, Then } from "cucumber";
 import { source } from 'axe-core';
-const { expect } = require("chai");
+const { expect } = require('chai');
+const fs = require('fs');
 
 let results = {};
 
@@ -16,6 +17,10 @@ When("I run an accessibility test", function() {
         done(results);
       });
   }, options);
+
+  let data = JSON.stringify(results);
+  var timestamp = new Date().getTime();
+  fs.writeFileSync('axe/axe-' + timestamp + '.json', data);
 
   //expect(results.violations.length).to.be.equal(0,`${browser.getUrl()} doesn't pass accessibility test`);
 

@@ -1,7 +1,7 @@
 Feature: Accessibility
 
   @table
-  @pass
+  @pass @me
   Scenario Outline: Site Accessibility
     When I navigate to '<url>'
     Then take a screenshot
