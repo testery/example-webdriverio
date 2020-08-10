@@ -20,7 +20,7 @@ Scenario: User Goes to Amazon
   Then the page title is "This test should not run since it is ignored"
 
 @github
-@pass
+@pass @me
 Scenario: User Goes to Github
   When I navigate to 'http://www.github.com'
   Then the page title is "The world’s leading software development platform · GitHub"

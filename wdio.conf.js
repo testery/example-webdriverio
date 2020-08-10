@@ -1,22 +1,11 @@
 exports.config = {
-  //
-  // ====================
-  // Runner Configuration
-  // ====================
-  //
-  // WebdriverIO allows it to run your tests in arbitrary locations (e.g. locally or
-  // on a remote machine).
+
   runner: "local",
-  //
-  //
-  // ==================
-  // Specify Test Files
-  // ==================
-  // Define which test specs should run. The pattern is relative to the directory
-  // from which `wdio` was called. Notice that, if you are calling `wdio` from an
-  // NPM script (see https://docs.npmjs.com/cli/run-script) then the current working
-  // directory is where your package.json resides, so `wdio` will be called from there.
-  //
+
+  hostname: 'localhost',
+  port: 4444,
+  path: '/wd/hub',
+
   specs: ["./features/**/*.feature"],
   // Patterns to exclude.
   exclude: [
@@ -51,7 +40,7 @@ exports.config = {
       // 5 instances get started at a time.
       maxInstances: 5,
       //
-      browserName: "chrome",
+      browserName: "internet explorer",
       // If outputDir is provided WebdriverIO can capture driver session logs
       // it is possible to configure which logTypes to include/exclude.
       // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
