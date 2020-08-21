@@ -36,4 +36,4 @@ Scenario Outline: Navigation Tests
 	| name   | url                   | title |
 	| Google | http://www.google.com | Google|
 	| Yahoo  | http://www.yahoo.com  | Yahoo |
-  | Bitbucket  | https://bitbucket.org  | Bitbucket |
+  | Bitbucket  | https://bitbucket.org  | Bitbucket  The Git solution for professional teams |
