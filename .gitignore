@@ -1,4 +1,4 @@
 node_modules/
-screenshots/
-axe/
+screenshots/*.*
+axe/*.*
 *.log
