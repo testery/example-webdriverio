@@ -1,6 +1,6 @@
 Feature: Security
 
-@active @pass
+@active @pass @me
 Scenario: Run Command
   When I run a command
   Then the output is "foo"
