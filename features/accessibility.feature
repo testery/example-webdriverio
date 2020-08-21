@@ -12,6 +12,7 @@ Feature: Accessibility
       | url                               |
       | https://www.carfax.com            |
       | https://www.amazon.com            |
+      | https://www.testery.io            |
 
   @pass
   Scenario: Checking Specific Accessibility Rules
