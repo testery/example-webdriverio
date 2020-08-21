@@ -13,6 +13,7 @@ Feature: Accessibility
       | https://www.carfax.com            |
       | https://www.amazon.com            |
       | https://www.testery.io            |
+      | http://hekademeia.org/ |
 
   @pass
   Scenario: Checking Specific Accessibility Rules
