@@ -17,7 +17,7 @@ Feature: Accessibility
 
   @pass
   Scenario: Checking Specific Accessibility Rules
-  When I navigate to 'https://www.carfax.com'
+  When I navigate to 'http://hekademeia.org'
   And I run an accessibility test
   Then the following rules are enforced
     | rule                                |
