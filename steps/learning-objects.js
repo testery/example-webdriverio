@@ -1,60 +1,53 @@
 import { Given, When, Then } from "cucumber";
 
 // Page Object example for later
-//import LoginPage from "../pages/login";
+import LoginPage from "../pages/login";
+import AdminPage from "../pages/admin";
+import LearnerPage from "../pages/learner";
 
 const urlCMS = "https://testery.slgo.gowithsparklearn.com";
 const email = process.env.EMAIL;
 const password = process.env.PASSWORD;
 
 Given("I have logged in as admin", function() {
-  const inputEmail = $("input[type='email']");
-  const inputPassword = $("input[type='password']");
-  const btnSubmit = $("input.form-submit");
-
   browser.url(urlCMS);
 
-  inputEmail.setValue(email);
-  inputPassword.setValue(password);
-  btnSubmit.click();
+  LoginPage.inputEmail.setValue(email);
+  LoginPage.inputPassword.setValue(password);
+  LoginPage.btnSignIn.click();
 
   $("h1=Dashboard").waitForDisplayed();
 });
 
 When('I click on "Courses and Content Library" in the menu', function() {
-  const a = $("a[title='Manage Courses and Content']");
-  a.waitForDisplayed();
-  a.waitForClickable();
-  a.click();
+  AdminPage.linkManageCoursesAndContent.waitForDisplayed();
+  AdminPage.linkManageCoursesAndContent.waitForClickable();
+  AdminPage.linkManageCoursesAndContent.click();
 
-  $("h1=Courses").waitForDisplayed();
+  AdminPage.headingCourses.waitForDisplayed();
 });
 
 When('click on "Learning Objects" in the menu', function() {
-  const a = $("a=Learning Objects");
-  a.waitForClickable();
-  a.click();
+  AdminPage.linkLearningObjects.waitForClickable();
+  AdminPage.linkLearningObjects.click();
 
-  $("h1=Learning Objects").waitForDisplayed();
+  AdminPage.headingLearningObjects.waitForDisplayed();
 });
 
 When('click on "Add New From Web"', function() {
-  const a = $("a=Add New From Web");
-  a.click();
+  AdminPage.linkAddNewFromWeb.click();
 
-  $("h1=Create Learn Link").waitForDisplayed();
+  AdminPage.headingCreateLearnLink.waitForDisplayed();
 });
 
 When('select a value for "Topic" from the dropdown', function() {
-  const s = $("select#edit-field-topic");
-  s.selectByVisibleText("Digital literacy");
+  AdminPage.dropdownEditTopic.selectByVisibleText("Digital literacy");
 });
 
 let title = '';
 When('fill in a title "{}"', function(textTitle) {
   title = textTitle;
-  const i = $("input#edit-title-0-value");
-  i.setValue(textTitle);
+  AdminPage.inputTitle.setValue(textTitle);
 });
 
 When("upload an image", function() {
@@ -71,49 +64,45 @@ When("upload an image", function() {
   //const i = $("#edit-field-image-0-upload");
 
   // CSS on this element has "visibility: hidden"
-  const i = $("input.input--file");
+  const el = $("input.input--file");
   browser.execute(function() {
-    document.querySelector('input.input--file').style.visibility = 'visible';
-    document.querySelector('input.input--file').style.opacity = 100;
-    document.querySelector('input.input--file').style.height = '100px';
+    const el = "input.input--file";
+    document.querySelector(el).style.visibility = 'visible';
+    document.querySelector(el).style.opacity = 100;
+    document.querySelector(el).style.height = '100px';
   });
 
-  i.waitForDisplayed();
-  i.waitForClickable();
-  i.setValue(img);
+  el.waitForDisplayed();
+  el.waitForClickable();
+  el.setValue(img);
 
   // Alternative Image Text is required
-  const inputAltImgText = $("input[data-drupal-selector='edit-field-image-0-alt']");
-  inputAltImgText.waitForDisplayed();
-  inputAltImgText.setValue('test image');
+  AdminPage.inputAltImgText.waitForDisplayed();
+  AdminPage.inputAltImgText.setValue('test image');
 });
 
 When("provide a brief description", function() {
-  const t = $("textarea#edit-field-description-0-value");
-  t.setValue("Test Description");
+  AdminPage.inputDescription.setValue("Test Description");
 });
 
 When("add two tags", function() {
-  const i = $("input#autocomplete-deluxe-input");
-  i.click();
+  AdminPage.inputTags.click();
   browser.keys(["test-tag1", "Enter"]);
   browser.keys(["test-tag2", "Enter"]);
 });
 
 When('add a content link "{}"', function(url) {
-  const i = $("input#edit-field-content-link-0-uri");
-  i.setValue(url);
+  AdminPage.inputContentLink.setValue(url);
 });
 
 When("click save", function() {
-  const btn = $("input#edit-submit");
-  btn.click();
+  AdminPage.btnSave.click();
 
-  const h = $("h1=Learning Objects");
-  h.waitForDisplayed();
+  AdminPage.headingLearningObjects.waitForDisplayed();
 });
 
 When('I click on view for "Test Title"', function() {
+  // Improvement: Generalize title to user input
   const a = $$("a=Test Title")[0];  // $$() because there are more than one link
   a.click();
 
@@ -122,12 +111,11 @@ When('I click on view for "Test Title"', function() {
 });
 
 When('I click on "Read more"', function() {
-  const btnReadMore = $("a=Read more");
   // Strange issue with clicking this button
-  btnReadMore.waitForDisplayed();
-  btnReadMore.scrollIntoView();
-  btnReadMore.waitForClickable();
-  btnReadMore.click();
+  AdminPage.btnReadMore.waitForDisplayed();
+  AdminPage.btnReadMore.scrollIntoView();
+  AdminPage.btnReadMore.waitForClickable();
+  AdminPage.btnReadMore.click();
 
   browser.waitUntil(function() {
     const hs = browser.getWindowHandles();
@@ -145,20 +133,14 @@ When("I wait {} seconds", function(seconds) {
 });
 
 Then('a message appears that says "Learn Link ____ has been created."', function() {
-  const d = $("div[aria-label='Status message']");
-  expect(d).toHaveTextContaining(`Learn Link ${title} has been created.`);
+  expect(AdminPage.messageStatus).toHaveTextContaining(`Learn Link ${title} has been created.`);
 });
 
 Then("I should see the title, description, and tags are populated", function() {
-  const title = $("span=Test Title");
-  const description = $("p=Test Description");
-  const tag1 = $("a*=test-tag1");
-  const tag2 = $("a*=test-tag2");
-
-  expect(title).toBeDisplayed;
-  expect(description).toBeDisplayed;
-  expect(tag1).toBeDisplayed;
-  expect(tag2).toBeDisplayed;
+  expect(AdminPage.viewTitle).toBeDisplayed;
+  expect(AdminPage.viewDescription).toBeDisplayed;
+  expect(AdminPage.viewTag1).toBeDisplayed;
+  expect(AdminPage.viewTag2).toBeDisplayed;
 });
 
 Then('the URL "{}" is opened in a new window', function(textUrl) {
@@ -182,28 +164,24 @@ Given("I have logged in as a learner", function() {
     email: process.env.EMAIL_LEARNER,
     password: process.env.PASSWORD_LEARNER,
   }
-  const inputEmail = $("input[type='email']");
-  const inputPassword = $("input[type='password']");
-  const btnSubmit = $("input.form-submit");
 
   browser.url(urlCMS);
-  if ($("h1=Dashboard").isDisplayed()) {
+  if (AdminPage.headingDashboard.isDisplayed()) {
     const urlLogout = "https://testery.slgo.gowithsparklearn.com/user/logout";
     browser.url(urlLogout);
   }
 
-  inputEmail.setValue(credsLearner.email);
-  inputPassword.setValue(credsLearner.password);
-  btnSubmit.click();
+  LoginPage.inputEmail.setValue(credsLearner.email);
+  LoginPage.inputPassword.setValue(credsLearner.password);
+  LoginPage.btnSignIn.click();
 
   // Learner's homepage unique element
-  $("a[title='View content personally recommended for you']").waitForDisplayed();
+  LearnerPage.linkPersonallyRecommended.waitForDisplayed();
 });
 
 When('I click on "New"', function() {
-  const a = $("a[title='View recently added content']");
-  a.waitForClickable();
-  a.click();
+  LearnerPage.linkRecentlyAdded.waitForClickable();
+  LearnerPage.linkRecentlyAdded.click();
 });
 
 When("click on the bookmark icon for the {} item listed", function(nth) {
@@ -211,28 +189,27 @@ When("click on the bookmark icon for the {} item listed", function(nth) {
   if (nth == 'first') {
     index = 0;
   }
-  const btn = $$("button.o-button--bookmark")[index];
+  if (nth == 'second') {
+    index = 1;
+  }
+  const btn = LearnerPage.btnBookmarks[index];
   btn.waitForClickable();
   btn.click();
 
   // After bookmark is clicked, icon color is filled
-  const flag = $("div.o-flag.is-active");
-  flag.waitForDisplayed();
+  LearnerPage.flagActive.waitForDisplayed();
 });
 
 Then("the bookmark icon fills in", function() {
-  const flag = $("div.o-flag.is-active");
-  expect(flag).toBeDisplayed();
+  expect(LearnerPage.flagActive).toBeDisplayed();
 });
 
 When('I click on "Me" in the main menu', function() {
-  const a = $('a[title="Me"]');
-  a.waitForClickable();
-  a.click();
+  LearnerPage.linkMe.waitForClickable();
+  LearnerPage.linkMe.click();
 
   // An unique element on the "Me" page is a link to Bookmarks
-  const pageMe = $("a[title='My Bookmarks']");
-  pageMe.waitForDisplayed();
+  LearnerPage.linkMyBookmarks.waitForDisplayed();
 });
 
 title="Test Title";

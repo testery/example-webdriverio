@@ -8,5 +8,6 @@ To run tests: `npm test`
 Pass in login credentials as environment variables to run tests.
 ```
 EMAIL=admin@email.com PASSWORD=secret
-EMAIL_LEARNER=learner@email.com PASSWORD_LEARNER=secret npm test
+EMAIL_LEARNER=learner@email.com PASSWORD_LEARNER=secret
+npm test
 ```

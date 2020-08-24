@@ -1,7 +1,7 @@
 class LoginPage {
-    get inputEmail() { $('input[type="email"]'); }
-    get inputPassword() { $('input[type="password"]'); }
-    get btnSignIn() { $('input.form-submit'); }
+    get inputEmail() { return $('input[type="email"]'); }
+    get inputPassword() { return $('input[type="password"]'); }
+    get btnSignIn() { return $('input.form-submit'); }
 }
 
 export default new LoginPage();
