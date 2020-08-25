@@ -11,7 +11,8 @@ Feature: Learning Objects
     And provide a brief description
     And add two tags
     And add a content link "https://blog.testery.io"
-    And click save
+    Then take a screenshot
+    When click save
     Then a message appears that says "Learn Link ____ has been created."
 
     When I click on view for "Test Title"
