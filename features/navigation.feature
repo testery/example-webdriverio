@@ -37,3 +37,4 @@ Scenario Outline: Navigation Tests
 	| Google | http://www.google.com | Google|
 	| Yahoo  | http://www.yahoo.com  | Yahoo |
   | Bitbucket  | https://bitbucket.org  | Bitbucket |
+  |Ellucian|https://www.ellucian.com/|not set|
