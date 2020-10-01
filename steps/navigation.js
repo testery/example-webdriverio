@@ -1,6 +1,11 @@
 import { When, Then } from "cucumber";
 const { expect } = require("chai");
 
+When("I navigate to the webapp", function() {
+  var testUrl = process.env.TEST_URL === undefined ? "localhost:3000" : process.env.TEST_URL;
+  browser.url(testUrl);
+});
+
 When("I navigate to {string}", function(url) {
   browser.url(url);
 });
@@ -18,5 +23,10 @@ Then(/the page title is '(.*)'/, { timeout: 60 * 1000 }, function(title) {
 });
 
 Then("take a screenshot", function() {
+  let fs = require('fs');
+  if (!fs.existsSync("./screenshots")){
+    console.log("Screenshots dir being created.");
+    fs.mkdirSync("./screenshots");
+  } 
   browser.saveScreenshot("./screenshots/" + Math.random() + ".png");
 });

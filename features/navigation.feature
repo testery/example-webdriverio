@@ -10,13 +10,16 @@ Scenario: User Searches Google
   When I navigate to "http://www.google.com"
   Then the page title is 'Google'
 
-@me
+@smoke
 Scenario: User Visits Homepage
-  When I navigate to "http://localhost:3000"
+  When I navigate to the webapp
   Then the page title is 'React App'
   When I click Users
-  And I click Home
-  And I click About
+  Then take a screenshot
+  When I click Home
+  Then take a screenshot
+  When I click About
+  Then take a screenshot
 
 Scenario: This test will fail
   When I navigate to "http://www.google.com"

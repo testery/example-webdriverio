@@ -19,6 +19,18 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install testery --upgrade
+          npm install -g localtunnel
       - name: Run Testery Tests
         run: |
-          testery create-test-run --api-url https://api.testery.io/api --token "$TESTERY_TOKEN" --include-tags "pass" --git-ref "$GITHUB_SHA" --project "example-webdriverio" --environment "testery-dev"
+          # Start localtunnel and get url.
+          lt -p 3000 > url.txt &
+          TEST_URL=`cat url.txt | sed -r 's/your url is: (.*)/\1/'`
+
+          # Create test run.
+          testery create-test-run --api-url https://api.testery.io/api --token "$TESTERY_TOKEN" --include-tags "smoke" \
+              --variable "TEST_URL=${TEST_URL}"
+              --git-ref "$GITHUB_SHA" --project "example-webdriverio" --environment "testery-dev"
+              --wait-for-results
+              
+          # Stop localtunnel.
+          ps -Af | grep "lt -p" | grep -v grep | awk '{print $2}' | xargs kill -STOP
