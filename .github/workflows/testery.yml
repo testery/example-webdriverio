@@ -31,12 +31,16 @@ jobs:
         run: |
           # Start localtunnel and get url.
           echo "Starting local tunnel..."
-          # lt -p 3000 > url.txt &
-          lt -p 3000
+          lt -p 3000 > url.txt &
+
+          sleep 5
+          
+          cat url.txt
+
           TEST_URL=`cat url.txt | sed -r 's/your url is: (.*)/\1/'`
 
           echo "Test URL: $TEST_URL"
-          cat url.txt
+          
 
           # Create test run.
           testery create-test-run --api-url https://api.testery.io/api --token "$TESTERY_TOKEN" --include-tags "smoke" \
