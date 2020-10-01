@@ -25,11 +25,14 @@ jobs:
           cd web-app
           npm install
           npm start &
+
+          ps -Af | grep node
       - name: Run Testery Tests
         run: |
           # Start localtunnel and get url.
           echo "Starting local tunnel..."
-          lt -p 3000 > url.txt &
+          # lt -p 3000 > url.txt &
+          lt -p 3000
           TEST_URL=`cat url.txt | sed -r 's/your url is: (.*)/\1/'`
 
           echo "Test URL: $TEST_URL"
