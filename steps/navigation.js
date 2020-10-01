@@ -4,6 +4,11 @@ const { expect } = require("chai");
 When("I navigate to the webapp", function() {
   var testUrl = process.env.TEST_URL === undefined ? "localhost:3000" : process.env.TEST_URL;
   browser.url(testUrl);
+  if (browser.getTitle() == "Tunnel website ahead!") {
+    $(".btn-primary").click();
+  } else {
+    console.log("Browser title is: " + browser.getTitle());
+  }
 });
 
 When("I navigate to {string}", function(url) {
