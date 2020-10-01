@@ -5,7 +5,14 @@ When("I navigate to {string}", function(url) {
   browser.url(url);
 });
 
-Then("the page title is {string}", { timeout: 60 * 1000 }, function(title) {
+When(/^I click (.*)$/, function(linkText) {
+  console.log("Looking for =" + linkText);
+  $("=" + linkText).click();
+  browser.pause(5000);
+  expect(true).to.equal(true);
+});
+
+Then(/the page title is '(.*)'/, { timeout: 60 * 1000 }, function(title) {
   const expected = browser.getTitle();
   expect(title).to.equal(expected);
 });
