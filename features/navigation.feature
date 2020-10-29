@@ -14,6 +14,10 @@ Feature: Navigation
     When I navigate to "http://www.google.com"
     Then the page title is 'Not Google'
 
+  Scenario: This test will fail
+    When I navigate to "http://www.google.com"
+    Then the page title is 'Not Google'
+
   @ignore
   Scenario: User Goes to Amazon
     When I navigate to 'http://www.amazon.com'
@@ -33,7 +37,6 @@ Feature: Navigation
     Then the page title is '<title>'
 
     Examples:
-      | name      | url                   | title     |
-      | Google    | http://www.google.com | Google    |
-      | Yahoo     | http://www.yahoo.com  | Yahoo     |
-      | Bitbucket | https://bitbucket.org | Bitbucket |
+      | name   | url                   | title  |
+      | Google | http://www.google.com | Google |
+      | Yahoo  | http://www.yahoo.com  | Yahoo  |
