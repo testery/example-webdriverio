@@ -23,7 +23,7 @@ Feature: Navigation
   @pass
   Scenario: User Goes to Github
     When I navigate to 'http://www.github.com'
-    Then the page title is 'GitHub: Where the world builds software · GitHub'
+    Then the page title is 'GitHub: Where the world builds software · GitHubz'
     Then take a screenshot
 
   @table
@@ -36,3 +36,14 @@ Feature: Navigation
       | name   | url                   | title  |
       | Google | http://www.google.com | Google |
       | Yahoo  | http://www.yahoo.com  | Yahoo  |
+
+  @smoke
+  Scenario: User Visits Homepage
+    When I navigate to the webapp
+    Then the page title is 'React App'
+    When I click Users
+    Then take a screenshot
+    When I click Home
+    Then take a screenshot
+    When I click About
+    Then take a screenshot
