@@ -14,10 +14,6 @@ Feature: Navigation
     When I navigate to "http://www.google.com"
     Then the page title is 'Not Google'
 
-  Scenario: This test will fail
-    When I navigate to "http://www.google.com"
-    Then the page title is 'Not Google'
-
   @ignore
   Scenario: User Goes to Amazon
     When I navigate to 'http://www.amazon.com'
@@ -27,7 +23,7 @@ Feature: Navigation
   @pass
   Scenario: User Goes to Github
     When I navigate to 'http://www.github.com'
-    Then the page title is 'The world’s leading software development platform · GitHub'
+    Then the page title is 'GitHub: Where the world builds software · GitHub'
     Then take a screenshot
 
   @table
