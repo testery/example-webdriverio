@@ -10,9 +10,9 @@ Scenario: Statistics Job
     And I verify the data on 'test.csv' matches the following patterns
     |Name	  |Age |Score |Grade  |
     |.*		  |\d* |\d*	  |[ABCDF]|
-    # And I verify the data on 'test.csv' is in the following ranges
-    # |Age	  |Score   |
-    # |14<x<18  |0<x<100 |
+    And I verify the data on 'test.csv' is in the following ranges
+    |Age	  |Score   |
+    |13<x<19  |0<x<100 |
     # When I run the statistics ETL job on 'test.csv'
     # Then I verify a 'test-stats.csv' file is created
     # And I verify the file format of 'test-stats.csv' is 'CSV'
