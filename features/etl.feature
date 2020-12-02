@@ -7,9 +7,9 @@ Scenario: Statistics Job
 	|Samantha |18  |96    |A      |
 	|Alexis	  |14  |84    |B      |
     And I read the 'test.csv' CSV file
-    # And I verify the data on 'test.csv' matches the following patterns
-    # |Name	  |Age |Score |Grade  |
-    # |.*		  |\d* |\d*	  |[ABCDF]|
+    And I verify the data on 'test.csv' matches the following patterns
+    |Name	  |Age |Score |Grade  |
+    |.*		  |\d* |\d*	  |[ABCDF]|
     # And I verify the data on 'test.csv' is in the following ranges
     # |Age	  |Score   |
     # |14<x<18  |0<x<100 |
