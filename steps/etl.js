@@ -4,7 +4,6 @@ const { expect } = require("chai");
 const csv = require('csv-parser');
 const fs = require('fs');
 
-let extractedData = [];
 
 When("{string} is a CSV file with the following records", function(file, table) {
     
@@ -17,7 +16,9 @@ When("{string} is a CSV file with the following records", function(file, table) 
 });
 
 When("I read the {string} CSV file", function(file) {
-    
+
+    let extractedData = [];
+
     fs.createReadStream(file)
       .pipe(csv())
       .on('data', (row) => {
