@@ -13,7 +13,7 @@ Scenario: Statistics Job
     And I verify the data on 'test.csv' is in the following ranges
     |Age	  |Score   |
     |13<x<19  |0<x<100 |
-    # When I run the statistics ETL job on 'test.csv'
+    When I run the statistics ETL job on 'test.csv'
     # Then I verify a 'test-stats.csv' file is created
     # And I verify the file format of 'test-stats.csv' is 'CSV'
     # And I read the 'test-stats.csv' CSV file

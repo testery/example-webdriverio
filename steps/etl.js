@@ -72,3 +72,27 @@ When("I verify the data on {string} is in the following ranges", function(file, 
         console.log('All values are within the expected range');
       });
 });
+
+When("I run the statistics ETL job on {string}", function(file) {
+    
+    // stub that outputs what is expected by etl job
+    console.log('---- RUNNING ETL JOB ----');
+
+    const createCsvWriter = require('csv-writer').createObjectCsvWriter;
+    const csvWriter = createCsvWriter({
+      path: 'test-stats.csv',
+      header: [
+        {id: 'Avg Age', title: 'Avg Age'},
+        {id: 'Avg Score', title: 'Avg Score'}
+      ]
+    });
+    const data = [
+      {
+        'Avg Age': 16,
+        'Avg Score': 90 
+      }
+    ];
+    csvWriter
+      .writeRecords(data)
+      .then(()=> console.log("transformed data from " + file + " and loaded results into test-stats.csv"));
+});
