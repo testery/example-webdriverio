@@ -14,10 +14,10 @@ Scenario: Statistics Job
     |Age	  |Score   |
     |13<x<19  |0<x<100 |
     When I run the statistics ETL job on 'test.csv'
-    # Then I verify a 'test-stats.csv' file is created
-    # And I verify the file format of 'test-stats.csv' is 'CSV'
-    # And I read the 'test-stats.csv' CSV file
-    # And I verify the 'test-stats.csv' CSV file has '1' rows
-    # Then I verify the data on 'test-stats.csv' has the following values
-    # |Avg Age| Avg Score |
-    # |	16	| 90        |
+    Then I verify a 'test-stats.csv' file is created
+    And I verify the file format of 'test-stats.csv' is '.csv'
+    And I read the 'test-stats.csv' CSV file
+    And I verify the 'test-stats.csv' CSV file has '1' rows
+    Then I verify the data on 'test-stats.csv' has the following values
+    |Avg Age| Avg Score |
+    |	16	| 90        |

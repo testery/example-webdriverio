@@ -3,7 +3,10 @@ import CsvDataWriter from "./utils/CsvDataWriter";
 const { expect } = require("chai");
 const csv = require('csv-parser');
 const fs = require('fs');
+var path = require('path')
+var assert = require('assert');
 
+let extractedData = [];
 
 When("{string} is a CSV file with the following records", function(file, table) {
     
@@ -13,21 +16,6 @@ When("{string} is a CSV file with the following records", function(file, table) 
         .then(() => {
             console.log("done");
         });
-});
-
-When("I read the {string} CSV file", function(file) {
-
-    let extractedData = [];
-
-    fs.createReadStream(file)
-      .pipe(csv())
-      .on('data', (row) => {
-        extractedData.push(row);
-        console.log(row);
-      })
-      .on('end', () => {
-        console.log('CSV file successfully processed');
-      });
 });
 
 When("I verify the data on {string} matches the following patterns", function(file, table) {
@@ -96,4 +84,51 @@ When("I run the statistics ETL job on {string}", function(file) {
     csvWriter
       .writeRecords(data)
       .then(()=> console.log("transformed data from " + file + " and loaded results into test-stats.csv"));
+});
+
+When("I verify a {string} file is created", function(file) {
+  
+  let fileExists = false;
+
+  try {
+    if (fs.existsSync(file)) {
+      fileExists = true;
+    }
+  } catch(err) {
+    console.log(err);
+  }
+
+  expect(fileExists).to.be.true;
+});
+
+When("I verify the file format of {string} is {string}", function(file, format) {
+  
+  expect(path.extname(file) === format).to.be.true;
+});
+
+When("I read the {string} CSV file", function(file) {
+
+  extractedData = [];
+
+  fs.createReadStream(file)
+    .pipe(csv())
+    .on('data', (row) => {
+      extractedData.push(row);
+      console.log(row);
+    })
+    .on('end', () => {
+      console.log('CSV file data successfully extracted');
+    });
+});
+
+When("I verify the {string} CSV file has {string} rows", function(file, numOfRows) {
+
+ expect(extractedData.length).to.eq(parseInt(numOfRows));
+});
+
+When("I verify the data on {string} has the following values", function(file, table) {
+  
+  extractedData.forEach((row, index) => {
+    assert.deepEqual(row, table.hashes()[index]);
+  });
 });
