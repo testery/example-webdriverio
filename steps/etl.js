@@ -1,6 +1,7 @@
 import { When, Then } from "cucumber";
 import CsvDataWriter from "./utils/CsvDataWriter";
 import CsvDataReader from "./utils/CsvDataReader";
+import DataAnalyzer from "./utils/DataAnalyzer";
 const { expect } = require("chai");
 const csv = require('csv-parser');
 const fs = require('fs');
@@ -14,19 +15,21 @@ var assert = require('assert');
 let extractedData = [];
 
 When("{string} is a CSV file with the following records", function(file, table) {
-    
-  const csvWriter = new CsvDataWriter(file);
-  csvWriter
+  const analyzer = new DataAnalyzer(file);
+  
+  analyzer
+    .dataWriter
     .writeRecords(table)
     .then(() => {
-      console.log("done");
+      console.log("loaded records from table into new file: " + file + " successfully");
   });
 });
 
 When("I read the {string} CSV file", function(file) {
-
-  const csvReader = new CsvDataReader(file);
-  csvReader
+  const analyzer = new DataAnalyzer(file);
+  
+  analyzer
+    .dataReader
     .readRecords()
     .then((arrayOfObjects) => {
       extractedData = arrayOfObjects;
@@ -34,8 +37,10 @@ When("I read the {string} CSV file", function(file) {
 });
 
 When("I verify the data on {string} matches the following patterns", function(file, table) {
-  const csvReader = new CsvDataReader(file);
-  csvReader
+  const analyzer = new DataAnalyzer(file);
+  
+  analyzer
+    .dataReader
     .readRecords()
     .then((arrayOfObjects) => {
       for (let object of arrayOfObjects) {
@@ -55,8 +60,10 @@ When("I verify the data on {string} matches the following patterns", function(fi
 
 
 When("I verify the data on {string} is in the following ranges", function(file, table) {
-  const csvReader = new CsvDataReader(file);
-  csvReader
+  const analyzer = new DataAnalyzer(file);
+  
+  analyzer
+    .dataReader
     .readRecords()
     .then((arrayOfObjects) => {
       for (let object of arrayOfObjects) {
