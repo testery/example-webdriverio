@@ -42,12 +42,12 @@ Scenario: READING AND WRITING JSON
     |Avg Age| Avg Score |
     |	16	| 90        |    
 
-# @etl
-# Scenario: READING AND WRITING SQL
-#     Given the 'tableA' table has the following data
-#     |Name	  |Age |Score |Grade  |
-# 	|Samantha |18  |96    |A      |
-# 	|Alexis	  |14  |84    |B      |
+@etl
+Scenario: READING AND WRITING SQL
+    Given the 'tableA' table has the following data
+    |Name	  |Age |Score |Grade  |
+	|Samantha |18  |96    |A      |
+	|Alexis	  |14  |84    |B      |
 #     When I run the following query
 # 	|select * from tableA|
 #     And I verify the data on the table matches the following patterns

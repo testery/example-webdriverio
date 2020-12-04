@@ -7,6 +7,7 @@ const csv = require('csv-parser');
 const fs = require('fs');
 var path = require('path')
 var assert = require('assert');
+var mysql = require('mysql');
 
 /*
 * type: an array of objects (column headers are the keys).
@@ -119,6 +120,21 @@ When("I verify the data on {string} has the following values", function(file, ta
     assert.deepEqual(row, table.hashes()[index]);
   });
 });
+
+When("the {string} table has the following data", function(dbTable, cucumberTable) {
+  let con = mysql.createConnection({
+    host: "database-1.cujvhggu3zm6.us-west-2.rds.amazonaws.com",
+    port: "3036",
+    user: "admin",
+    password: "VEZmzLBjDniPOYX0h9Tf"
+  });
+
+  con.connect(function(err) {
+    if (err) throw err;
+    console.log("connected to database-1.cujvhggu3zm6.us-west-2.rds.amazonaws.com:3306")
+  });
+});
+
 
 When("I run the statistics ETL job on {string}", function(file) {
     
