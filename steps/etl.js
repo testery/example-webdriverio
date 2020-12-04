@@ -14,6 +14,7 @@ var mysql = require('mysql');
 * ex: [ {age: 7, name: Samantha }, {age: 3, name: Alexis } ]
 */
 let extractedData = [];
+let con = null;
 
 When("{string} is a file with the following records", function(file, table) {
   const analyzer = new DataAnalyzer(file);
@@ -121,17 +122,39 @@ When("I verify the data on {string} has the following values", function(file, ta
   });
 });
 
-When("the {string} table has the following data", function(dbTable, cucumberTable) {
-  let con = mysql.createConnection({
-    host: "database-1.cujvhggu3zm6.us-west-2.rds.amazonaws.com",
-    port: "3036",
-    user: "admin",
-    password: "VEZmzLBjDniPOYX0h9Tf"
+When("I connect to the following MySql database", function (table) {
+
+  con = mysql.createConnection({
+    host: table.hashes()[0]["host"],
+    port: table.hashes()[0]["port"],
+    user: table.hashes()[0]["user"],
+    database: table.hashes()[0]["database"],
+    connectTimeout: 30000
   });
 
-  con.connect(function(err) {
-    if (err) throw err;
-    console.log("connected to database-1.cujvhggu3zm6.us-west-2.rds.amazonaws.com:3306")
+  return new Promise((resolve,reject) => {
+    con.connect();
+    console.log("connected to mysql-rfam-public.ebi.ac.uk");
+    resolve();
+  });
+});
+
+let results = [];
+
+When("I run the following sql query", function(docString) {
+  let sql = docString;
+  console.log("RUNNING SQL: " + sql);
+
+  return new Promise((resolve,reject) => {
+      con.query(sql, function(err,result) {
+        if (err) reject(err);
+        console.log("RESULT OF QUERY:");
+        result.forEach(row => {
+          results.push(row);
+          console.log(results);
+        });
+        resolve();
+      });
   });
 });
 
