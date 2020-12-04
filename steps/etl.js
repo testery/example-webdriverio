@@ -9,14 +9,15 @@ var path = require('path')
 var assert = require('assert');
 
 /*
-* type: array of objects
-* ex: [ {id:1, age: 7, name: Samantha }, {id:2, age: 3, name: Alexis } ]
+* type: an array of objects (column headers are the keys).
+* ex: [ {age: 7, name: Samantha }, {age: 3, name: Alexis } ]
 */
 let extractedData = [];
 
-When("{string} is a CSV file with the following records", function(file, table) {
+When("{string} is a file with the following records", function(file, table) {
   const analyzer = new DataAnalyzer(file);
   
+  table.hashes()
   analyzer
     .dataWriter
     .writeRecords(table)
@@ -25,7 +26,7 @@ When("{string} is a CSV file with the following records", function(file, table) 
   });
 });
 
-When("I read the {string} CSV file", function(file) {
+When("I read the {string} file", function(file) {
   const analyzer = new DataAnalyzer(file);
   
   analyzer
@@ -33,6 +34,7 @@ When("I read the {string} CSV file", function(file) {
     .readRecords()
     .then((arrayOfObjects) => {
       extractedData = arrayOfObjects;
+      console.log(extractedData);
     });
 });
 
@@ -106,7 +108,7 @@ When("I verify the file format of {string} is {string}", function(file, format) 
   expect(path.extname(file) === format).to.be.true;
 });
 
-When("I verify the {string} CSV file has {string} rows", function(file, numOfRows) {
+When("I verify the {string} file has {string} rows", function(file, numOfRows) {
 
  expect(extractedData.length).to.eq(parseInt(numOfRows));
 });
@@ -123,7 +125,16 @@ When("I run the statistics ETL job on {string}", function(file) {
   // stub that outputs what is expected by etl job
   console.log('---- RUNNING ETL JOB ----');
   const data = [{'Avg Age': 16,'Avg Score': 90 }];
-  const createCsvWriter = require('csv-writer').createObjectCsvWriter;
-  const csvWriter = createCsvWriter({path: 'test-stats.csv', header: [{id: 'Avg Age', title: 'Avg Age'}, {id: 'Avg Score', title: 'Avg Score'}]});
-  csvWriter.writeRecords(data).then(()=> console.log("transformed data from " + file + " and loaded results into test-stats.csv"));
+  
+  if(path.extname(file) === ".csv") {
+  
+    const createCsvWriter = require('csv-writer').createObjectCsvWriter;
+    const csvWriter = createCsvWriter({path: 'test-stats.csv', header: [{id: 'Avg Age', title: 'Avg Age'}, {id: 'Avg Score', title: 'Avg Score'}]});
+    csvWriter
+      .writeRecords(data)
+      .then(()=> console.log("transformed data from " + file + " and loaded results into test-stats.csv"));
+  } else if (path.extname(file) === ".json") {
+  
+    fs.writeFileSync('test-stats.json', JSON.stringify(data));
+  };
 });

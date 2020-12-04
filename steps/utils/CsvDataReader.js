@@ -17,7 +17,6 @@ class CsvDataReader extends DataReader {
             .pipe(csv())
             .on('data', (row) => {
                 extractedData.push(row);
-                console.log(row);
             })
             .on('end', () => {
                 console.log('CSV file data successfully extracted');
