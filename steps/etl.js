@@ -139,19 +139,19 @@ When("I connect to the following MySql database", function (table) {
   });
 });
 
-let results = [];
 
 When("I run the following sql query", function(docString) {
   let sql = docString;
   console.log("RUNNING SQL: " + sql);
 
+  extractedData = [];
   return new Promise((resolve,reject) => {
       con.query(sql, function(err,result) {
         if (err) reject(err);
         console.log("RESULT OF QUERY:");
         result.forEach(row => {
-          results.push(row);
-          console.log(results);
+          extractedData.push(JSON.parse(JSON.stringify(row)));
+          console.log(extractedData);
         });
         resolve();
       });
@@ -176,4 +176,8 @@ When("I run the statistics ETL job on {string}", function(file) {
   
     fs.writeFileSync('test-stats.json', JSON.stringify(data));
   };
+});
+
+When("I run the bioinformatics ETL job", function() {
+  console.log('---- RAN ETL JOB ----');
 });

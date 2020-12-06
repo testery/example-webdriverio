@@ -57,19 +57,21 @@ Scenario: READING AND WRITING SQL
     AND is_significant = 1
     LIMIT 2
     """
-#     When I run the following query
-# 	|select * from tableA|
-#     And I verify the data on the table matches the following patterns
-#     |Name	  |Age |Score |Grade  |
-#     |.*		  |\d* |\d*	  |[ABCDF]|
-#     And I verify the data on the table is in the following ranges
-#     |Age	  |Score   |
-#     |13<x<19  |0<x<100 |
-#     When I run the statistics ETL job on table
-#     Then I verify the transformed data is loaded into 'TableB' table
-#     When I run the following query
-# 	|select * from tableB|
-#     And I verify the 'TableB' table has '1' rows
-#     Then I verify the data on 'TableB' has the following values
-#     |Avg Age| Avg Score |
-#     |	16	| 90        |       
+    Then I verify the data on 'extracted data' has the following values
+    |rfam_acc           |rfamseq_acc      |seq_start |seq_end           |
+    |RF02143            |AABR05000762.1   |4020      |3788              |  
+    |RF00665            |AABR05005166.1   |6218      |6135              |  
+    When I run the bioinformatics ETL job
+    Then I run the following sql query
+    """
+    SELECT fr.seq_start, fr.seq_end
+    FROM full_region fr, rfamseq rf, taxonomy tx
+    WHERE rf.ncbi_id = tx.ncbi_id
+    AND fr.rfamseq_acc = rf.rfamseq_acc
+    AND tx.ncbi_id = 10116
+    AND is_significant = 1
+    LIMIT 1
+    """
+    Then I verify the data on 'transformed data loaded into db' has the following values
+    |seq_start          |seq_end           |
+    |4020               |3788              |  
