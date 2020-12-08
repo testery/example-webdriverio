@@ -1,11 +1,12 @@
+@smoke
 Feature: VALIDATING AND VERIFYING DATA
 
-@etl
+@etl 
 Scenario: READING AND WRITING CSV
     Given 'test.csv' is a file with the following records
     |Name	            |Age        |Score      |Grade  |
 	|Samantha           |18         |96         |A      |
-	|Alexis	            |14         |84         |B      |
+	|Alexis	            |14         |84         |E      |
     And I read the 'test.csv' file
      And I verify the data on 'test.csv' matches the following patterns
     |Name	            |Age        |Score      |Grade  |
