@@ -20,7 +20,7 @@ When("{string} is a file with the following records", function(file, table) {
   const analyzer = new DataAnalyzer(file);
   
   table.hashes()
-  analyzer
+  return analyzer
     .dataWriter
     .writeRecords(table)
     .then(() => {
@@ -31,7 +31,7 @@ When("{string} is a file with the following records", function(file, table) {
 When("I read the {string} file", function(file) {
   const analyzer = new DataAnalyzer(file);
   
-  analyzer
+  return analyzer
     .dataReader
     .readRecords()
     .then((arrayOfObjects) => {
@@ -43,7 +43,7 @@ When("I read the {string} file", function(file) {
 When("I verify the data on {string} matches the following patterns", function(file, table) {
   const analyzer = new DataAnalyzer(file);
   
-  analyzer
+  return analyzer
     .dataReader
     .readRecords()
     .then((arrayOfObjects) => {
@@ -66,7 +66,7 @@ When("I verify the data on {string} matches the following patterns", function(fi
 When("I verify the data on {string} is in the following ranges", function(file, table) {
   const analyzer = new DataAnalyzer(file);
   
-  analyzer
+  return analyzer
     .dataReader
     .readRecords()
     .then((arrayOfObjects) => {
@@ -116,10 +116,10 @@ When("I verify the {string} file has {string} rows", function(file, numOfRows) {
 });
 
 When("I verify the data on {string} has the following values", function(file, table) {
-  
-  extractedData.forEach((row, index) => {
-    assert.deepEqual(row, table.hashes()[index]);
-  });
+
+    extractedData.forEach((row, index) => {
+        assert.deepEqual(row, table.hashes()[index]);
+    });
 });
 
 When("I connect to the following MySql database", function (table) {

@@ -6,7 +6,7 @@ Scenario: READING AND WRITING CSV
     Given 'test.csv' is a file with the following records
     |Name	            |Age        |Score      |Grade  |
 	|Samantha           |18         |96         |A      |
-	|Alexis	            |14         |84         |E      |
+	|Alexis	            |14         |84         |B      |
     And I read the 'test.csv' file
      And I verify the data on 'test.csv' matches the following patterns
     |Name	            |Age        |Score      |Grade  |
@@ -21,6 +21,9 @@ Scenario: READING AND WRITING CSV
     Then I verify the data on 'test-stats.csv' has the following values
     |Avg Age            | Avg Score |
     |	16	            | 90        |
+    And I verify the data on 'test-stats.csv' is in the following ranges
+    |Avg Age            |
+    |13<x<17            |
 
 @etl
 Scenario: READING AND WRITING JSON
