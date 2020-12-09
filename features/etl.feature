@@ -23,7 +23,7 @@ Scenario: READING AND WRITING CSV
         |	16	            | 90        |
     And I verify the data on 'test-stats.csv' is in the following ranges
         |Avg Age            |
-        |13<x<17            |
+        |18<x<20            |
 
 @etl
 Scenario: READING AND WRITING JSON
