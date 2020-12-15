@@ -24,7 +24,7 @@ Feature: Navigation
   Scenario: User Goes to Github
     When I navigate to 'http://www.github.com'
     Then the page title is 'GitHub: Where the world builds software · GitHub'
-    Then take a screenshot
+    Then take a screenshot 'GitHub Home Page'
 
   @table
   @pass
@@ -33,10 +33,10 @@ Feature: Navigation
     Then the page title is '<title>'
 
     Examples:
-      | name   | url                   | title  |
-      | Google | http://www.google.com | Google |
-      | Yahoo  | http://www.yahoo.com  | Yahoo  |
-      | IP     | https://whatsmyip.com/| Whats My IP Address - IP Address, Whois & IP Tracing |
+      | name   | url                    | title                                                |
+      | Google | http://www.google.com  | Google                                               |
+      | Yahoo  | http://www.yahoo.com   | Yahoo                                                |
+      | IP     | https://whatsmyip.com/ | Whats My IP Address - IP Address, Whois & IP Tracing |
 
   @smoke
   Scenario: User Visits Homepage

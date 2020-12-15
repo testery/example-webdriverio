@@ -1,11 +1,5 @@
-import { When, Then, Before } from "cucumber";
+import { When, Then } from "cucumber";
 const { expect } = require("chai");
-
-var currentScenario;
-
-Before((world, scenario) => {
-  currentScenario = scenario;
-})
 
 When("I navigate to the webapp", function() {
   var testUrl = process.env.TEST_URL === undefined ? "localhost:3000" : process.env.TEST_URL;
@@ -35,13 +29,11 @@ Then(/the page title is '(.*)'/, { timeout: 60 * 1000 }, function(title) {
   expect(title).to.equal(expected);
 });
 
-Then("take a screenshot", function() {
+Then("take a screenshot {string}", function(name) {
   let fs = require('fs');
   if (!fs.existsSync("./screenshots")){
     console.log("Screenshots dir being created.");
     fs.mkdirSync("./screenshots");
   } 
-  var name =  Math.random() + ".png";
-  browser.saveScreenshot("./screenshots/" + name);
-  currentScenario.write("Screenshot saved: " + name);
+  browser.saveScreenshot("./screenshots/" + name + ".png");
 });
