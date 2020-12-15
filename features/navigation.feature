@@ -23,7 +23,7 @@ Feature: Navigation
   @pass
   Scenario: User Goes to Github
     When I navigate to 'http://www.github.com'
-    Then the page title is 'GitHub: Where the world builds software · GitHubz'
+    Then the page title is 'GitHub: Where the world builds software · GitHub'
     Then take a screenshot
 
   @table
