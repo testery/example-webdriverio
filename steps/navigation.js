@@ -3,7 +3,7 @@ const { expect } = require("chai");
 
 var currentScenario;
 
-Before(({scenario}) => {
+Before((world, scenario) => {
   currentScenario = scenario;
 })
 
