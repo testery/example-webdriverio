@@ -36,6 +36,7 @@ Feature: Navigation
       | name   | url                   | title  |
       | Google | http://www.google.com | Google |
       | Yahoo  | http://www.yahoo.com  | Yahoo  |
+      | IP     | https://whatsmyip.com/| Whats My IP Address - IP Address, Whois & IP Tracing |
 
   @smoke
   Scenario: User Visits Homepage
